@@ -1,7 +1,9 @@
 <?php
 require 'includes/conexion.php';
 require 'includes/Categoria.php';
+require 'includes/Marcas.php';
 $Categorias = listarCategorias();
+$Marcas = listarMarcas();
 include 'views/header.html';
 include 'views/nav.php';
 

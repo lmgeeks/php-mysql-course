@@ -1,7 +1,11 @@
 <?php
     require 'includes/conexion.php';
     require 'includes/Productos.php';
+    require 'includes/Categoria.php';
+    require 'includes/Marcas.php';
     $Productos = listarProductos();
+    $Categorias = listarCategorias();
+    $Marcas = listarMarcas();
     include 'views/header.html';
     include 'views/nav.php';
 ?>
@@ -27,7 +31,7 @@
                 <th>Stock</th>
                 <th>Imagen</th>
                 <th colspan="2">
-                    <a href="formAgregarCategoria.php" class="btn btn-success"><i class="far fa-plus-square"></i>&nbsp; Agregar</a>
+                    <a href="" class="btn btn-success" data-toggle="modal" data-target="#Agregar"><i class="far fa-plus-square"></i>&nbsp; Agregar</a>
                 </th>
             </tr>
         </thead>
@@ -58,4 +62,5 @@
         <a href="#" class="btn btn-outline-secondary">atras</a>
     </main>
 
+<?php  include 'views/formAgregarProducto.php';  ?>
 <?php  include 'views/footer.php';  ?>
