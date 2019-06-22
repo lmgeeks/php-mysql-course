@@ -20,24 +20,50 @@ function listarProductos(){
 /**
  * @return bool|mysqli_result
  */
-function agregarProductos(){
+function agregarProducto(){
 
-    $catNombre = $_POST['idProducto'];
-    $catNombre = $_POST['prdNombre'];
-    $catNombre = $_POST['prdPrecio'];
-    $catNombre = $_POST['prdMarca'];
-    $catNombre = $_POST['idCategoria'];
-    $catNombre = $_POST['prdPresentacion'];
+
+    $prdNombre = $_POST['prdNombre'];
+    $prdPrecio = $_POST['prdPrecio'];
+    $idMarca = $_POST['idMarca'];
+    $idCategoria = $_POST['idCategoria'];
+    $prdPresentacion = $_POST['prdPresentacion'];
     $prdStock = $_POST['prdStock'];
-    $prdImagen = $_POST['prdImagen'];
+    $prdImagen = $_FILES['prdImagen'];
+
+    subirImagen($prdImagen);
 
     $link = conectar();
 
-    $sql = "INSERT INTO productos (idProducto,prdNombre,prdPrecio,prdMarca,idCategoria,prdPresentacion,prdStock,prdImagen) VALUES('".$catNombre."')";
+    $sql = "INSERT INTO productos (prdNombre,prdPrecio,idMarca,idCategoria,prdPresentacion,prdStock,prdImagen) 
+                    VALUES('".$prdNombre."','".$prdPrecio."','".$idMarca."','".$idCategoria."','".$prdPresentacion."','".$prdStock."','".$prdImagen['name']."')";
 
     $resultado = mysqli_query($link, $sql) or die(mysqli_error($link));
 
     return $resultado;
+
+}
+
+
+
+function subirImagen($prdImagen)
+{
+
+    $ruta = 'images/productos';
+    $array = explode('.', $prdImagen['name']);
+    $extension = end($array);
+
+    if(($extension == 'jpg') || ($extension == 'png') || ($extension == 'gif')){
+
+        if(move_uploaded_file($prdImagen['tmp_name'],$ruta . $prdImagen['name'])){
+            return $ruta.$prdImagen['name'];
+        }
+
+    } else {
+        return "Formato de imagen incorrecto";
+    }
+
+
 }
 
 

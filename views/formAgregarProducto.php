@@ -83,7 +83,7 @@
                 <h4 class="modal-title">Agregar Categoria</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form action="agregarProducto.php" method="post" enctype="multipart/form-data">
+            <form action="adminProductos.php" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="prdNombre">Nombre:</label>

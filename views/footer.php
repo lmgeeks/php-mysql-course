@@ -13,6 +13,29 @@
         var output = document.getElementById('output');
         output.src = URL.createObjectURL(event.target.files[0]);
     };
+
+    $(document).ready(function() {
+
+        $('.delete').click(function(){
+            //Recogemos la id del contenedor padre
+            var parent = $(this).parent().attr('id');
+            //Recogemos el valor del servicio
+            var service = $(this).parent().attr('data');
+
+            var dataString = 'id='+service;
+
+            $.ajax({
+                type: "POST",
+                url: "includes/delete.php",
+                data: dataString,
+                success: function() {
+                    $('#delete-ok').empty();
+                    $('#delete-ok').append('<div>Se ha eliminado correctamente el servicio con id='+service+'.</div>').fadeIn("slow");
+                    $('#'+parent).remove();
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>

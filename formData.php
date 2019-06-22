@@ -18,7 +18,6 @@
             return "Formato de imagen incorrecto";
         }
 
-
      }
 
 ?>
